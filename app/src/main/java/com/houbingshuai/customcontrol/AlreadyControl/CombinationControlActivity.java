@@ -7,6 +7,8 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.houbingshuai.customcontrol.ExtendControl.ExtendTextView;
+import com.houbingshuai.customcontrol.ExtendControl.ExtendTextView.onChangedTextListener;
 import com.houbingshuai.customcontrol.R;
 import com.houbingshuai.customcontrol.utils.AnimationUtil;
 
@@ -17,6 +19,7 @@ public class CombinationControlActivity extends Activity {
 
     private ImageButton iv_button;
     private boolean isBackKey = true;
+    ExtendTextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,15 @@ public class CombinationControlActivity extends Activity {
 
     private void initView() {
         iv_button = findView(R.id.iv_button);
+        tv = (ExtendTextView) findViewById(R.id.tv_example);
+        tv.setControlText("1234567");
+
+        tv.setChangedText(new onChangedTextListener() {
+            @Override
+            public void onChangedUpload(String s) {
+                tv.setControlText(s);
+            }
+        });
     }
 
     private void initData() {
